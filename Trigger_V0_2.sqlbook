@@ -1,0 +1,591 @@
+-- SQLBook: Code
+--projarea
+--location
+-- database: :memory:
+DROP TRIGGER IF EXISTS insert_projarea;
+
+CREATE TRIGGER insert_projarea
+AFTER INSERT ON PLAN_projarea_32N
+FOR EACH ROW
+BEGIN
+	UPDATE PLAN_projarea_32N
+	SET rule_key = (SELECT rule_short FROM "SATURN_easement" WHERE new.easem_rule = full_descrip)
+	WHERE fid = new.fid;
+END;
+
+DROP TRIGGER IF EXISTS update_projarea;
+
+CREATE TRIGGER update_projarea
+AFTER UPDATE OF easem_rule ON PLAN_projarea_32N
+FOR EACH ROW
+BEGIN
+	UPDATE PLAN_projarea_32N
+	SET rule_key = (SELECT rule_short FROM "SATURN_easement" WHERE new.easem_rule = full_descrip)
+	WHERE fid = new.fid;
+END;
+
+DROP TRIGGER IF EXISTS insert_location;
+
+CREATE TRIGGER insert_location
+AFTER INSERT ON PLAN_location_32N
+FOR EACH ROW
+BEGIN
+	UPDATE PLAN_location_32N
+	SET
+		project_id = (SELECT fid FROM PLAN_projarea_32N WHERE st_intersects(new.geom, geom)),
+		version = (SELECT version FROM PLAN_projarea_32N WHERE st_intersects(new.geom, geom)),
+		custom_dist1 = (SELECT custom_dist1 FROM PLAN_projarea_32N WHERE st_intersects(new.geom, geom)),
+		custom_dist2 = (SELECT custom_dist2 FROM PLAN_projarea_32N WHERE st_intersects(new.geom, geom)),
+		type_name = (SELECT type_name FROM PLAN_projarea_32N WHERE st_intersects(new.geom, geom)),
+		rotor_radius = (SELECT SATURN_outlines_32N.rotor_radius FROM SATURN_outlines_32N, PLAN_projarea_32N WHERE SATURN_outlines_32N.type_name = PLAN_projarea_32N.type_name AND st_intersects(new.geom, (SELECT geom FROM PLAN_projarea_32N)) ),
+		easem_radius = (SELECT CASE rule_key
+							WHEN 'rotor_radius' THEN (SELECT rotor_radius FROM SATURN_outlines_32N, PLAN_projarea_32N WHERE SATURN_outlines_32N.type_name = PLAN_projarea_32N.type_name)
+							WHEN '0_4H_min3m' THEN (SELECT "0_4H_min3m" FROM SATURN_outlines_32N, PLAN_projarea_32N WHERE SATURN_outlines_32N.type_name = PLAN_projarea_32N.type_name)
+							WHEN '0_4H_min2_5mm' THEN (SELECT "0_4H_min2_5mm" FROM SATURN_outlines_32N, PLAN_projarea_32N WHERE SATURN_outlines_32N.type_name = PLAN_projarea_32N.type_name)
+							WHEN '0_2H_min3m' THEN (SELECT "0_2H_min3m" FROM SATURN_outlines_32N, PLAN_projarea_32N WHERE SATURN_outlines_32N.type_name = PLAN_projarea_32N.type_name)
+							WHEN '0_2H_min2_5m' THEN (SELECT "0_2H_min2_5m" FROM SATURN_outlines_32N, PLAN_projarea_32N WHERE SATURN_outlines_32N.type_name = PLAN_projarea_32N.type_name)
+							ELSE NULL
+							END AS results
+						FROM PLAN_projarea_32N WHERE st_intersects(new.geom, geom))
+	WHERE fid=new.fid; 
+END;
+
+DROP TRIGGER IF EXISTS update_location_visibility;
+
+CREATE TRIGGER update_location_visibility 
+AFTER UPDATE OF version ON PLAN_projarea_32N
+FOR EACH ROW
+BEGIN
+    UPDATE PLAN_location_32N 
+    SET is_visible = 
+        CASE 
+            WHEN version = new.version THEN 1
+            WHEN version = old.version THEN 0
+        END
+	WHERE project_id = new.fid;
+END;
+ 
+
+-- SQLBook: Code
+-- footprint
+
+DROP TRIGGER IF EXISTS insert_new_footprint;
+
+CREATE TRIGGER insert_new_footprint
+  AFTER UPDATE OF type_name ON PLAN_location_32N
+  BEGIN
+  INSERT INTO PLAN_footprint_32N(geom, id_type, fid_turbine, is_visible, version, project_id, areas_type)
+  VALUES
+  --temp_use
+  ((select CASE new.wayside 
+  WHEN 're' THEN ATM_Transform(geom,
+	ATM_Translate(
+	ATM_CreateRotate(
+	(-90-new.angle_degree)),
+	ST_X(NEW.geom), ST_Y(NEW.geom)
+  ))
+  ELSE ATM_Transform(geom,
+	ATM_Translate(
+	ATM_Rotate(
+	ATM_CreateXRoll(180),
+	(-90-new.angle_degree)),
+	ST_X(NEW.geom), ST_Y(NEW.geom))
+  )
+  END
+  from SATURN_footprint_32N WHERE area_type = 'temp_use' AND type_name = NEW.type_name
+  )
+  ,1,new.fid, new.is_visible, new.version, new.project_id, 'temp_use'),
+  -- perm_use
+  ((select CASE new.wayside 
+  WHEN 're' THEN ATM_Transform(geom,
+  ATM_Translate(
+  ATM_CreateRotate(
+  (-90-new.angle_degree)),
+  ST_X(NEW.geom), ST_Y(NEW.geom))
+  )
+  ELSE ATM_Transform(geom,
+  ATM_Translate(
+  ATM_Rotate(
+  ATM_CreateXRoll(180),
+  (-90-new.angle_degree)),
+  ST_X(NEW.geom), ST_Y(NEW.geom))
+  )
+  END
+  from SATURN_footprint_32N WHERE area_type = 'perm_use' AND type_name = NEW.type_name
+  )
+  ,1,new.fid, new.is_visible, new.version, new.project_id, 'perm_use'),
+  --crane_pad
+	((select CASE new.wayside 
+ WHEN 're' THEN ATM_Transform(geom,
+  ATM_Translate(
+  ATM_CreateRotate(
+  (-90-new.angle_degree)),
+  ST_X(NEW.geom), ST_Y(NEW.geom))
+  )
+  ELSE ATM_Transform(geom,
+  ATM_Translate(
+  ATM_Rotate(
+  ATM_CreateXRoll(180),
+  (-90-new.angle_degree)),
+  ST_X(NEW.geom), ST_Y(NEW.geom))
+  )
+  END
+  from SATURN_footprint_32N WHERE area_type = 'crane_pad' AND type_name = NEW.type_name
+  )
+  ,1,new.fid, new.is_visible, new.version, new.project_id, 'crane_pad'),
+  --foundation
+  	((select CASE new.wayside 
+ WHEN 're' THEN ATM_Transform(geom,
+  ATM_Translate(
+  ATM_CreateRotate(
+  (-90-new.angle_degree)),
+  ST_X(NEW.geom), ST_Y(NEW.geom))
+  )
+  ELSE ATM_Transform(geom,
+  ATM_Translate(
+  ATM_Rotate(
+  ATM_CreateXRoll(180),
+  (-90-new.angle_degree)),
+  ST_X(NEW.geom), ST_Y(NEW.geom))
+  )
+  END
+  from SATURN_footprint_32N WHERE area_type = 'fundmanent' AND type_name = NEW.type_name
+  )
+  ,1,new.fid, new.is_visible, new.version, new.project_id, 'fundament'),
+  --access_road
+  	((select CASE new.wayside 
+      WHEN 're' THEN ATM_Transform(geom,
+        ATM_Translate(
+        ATM_CreateRotate(
+        (-90-new.angle_degree)),
+        ST_X(NEW.geom), ST_Y(NEW.geom))
+        )
+        ELSE ATM_Transform(geom,
+        ATM_Translate(
+        ATM_Rotate(
+        ATM_CreateXRoll(180),
+        (-90-new.angle_degree)),
+        ST_X(NEW.geom), ST_Y(NEW.geom))
+        )
+        END
+      from SATURN_footprint_32N WHERE area_type = 'access_road' AND type_name = NEW.type_name
+      )
+  ,1,new.fid, new.is_visible, new.version, new.project_id, 'access_road')
+  ; 
+END;
+
+DROP TRIGGER IF EXISTS update_footprint;
+
+CREATE TRIGGER update_footprint
+  AFTER UPDATE OF wayside, angle_degree, type_name, geom ON PLAN_location_32N
+  FOR EACH ROW
+  BEGIN
+  UPDATE "PLAN_footprint_32N"
+  SET
+  geom =
+  CASE areas_type
+  WHEN 'temp_use' THEN
+    (SELECT 
+      CASE new.wayside 
+      WHEN 're' THEN ATM_Transform(geom,
+      ATM_Translate(
+      ATM_CreateRotate(
+      (-90-new.angle_degree)),
+      ST_X(NEW.geom), ST_Y(NEW.geom))
+      )
+      ELSE ATM_Transform(geom,
+      ATM_Translate(
+      ATM_Rotate(
+      ATM_CreateXRoll(180),
+      (-90-new.angle_degree)),
+      ST_X(NEW.geom), ST_Y(NEW.geom))
+      )
+      END
+    FROM "SATURN_footprint_32N" 
+    WHERE (type_name = new.type_name AND area_type = 'temp_use')
+  )
+  WHEN 'perm_use' THEN
+    (SELECT 
+      CASE new.wayside 
+      WHEN 're' THEN ATM_Transform(geom,
+      ATM_Translate(
+      ATM_CreateRotate(
+      (-90-new.angle_degree)),
+      ST_X(NEW.geom), ST_Y(NEW.geom))
+      )
+      ELSE ATM_Transform(geom,
+      ATM_Translate(
+      ATM_Rotate(
+      ATM_CreateXRoll(180),
+      (-90-new.angle_degree)),
+      ST_X(NEW.geom), ST_Y(NEW.geom))
+      )
+      END
+    FROM "SATURN_footprint_32N" 
+    WHERE (type_name = new.type_name AND area_type = 'perm_use')
+    )
+  WHEN 'fundament' THEN
+    (SELECT 
+      CASE new.wayside 
+      WHEN 're' THEN ATM_Transform(geom,
+      ATM_Translate(
+      ATM_CreateRotate(
+      (-90-new.angle_degree)),
+      ST_X(NEW.geom), ST_Y(NEW.geom))
+      )
+      ELSE ATM_Transform(geom,
+      ATM_Translate(
+      ATM_Rotate(
+      ATM_CreateXRoll(180),
+      (-90-new.angle_degree)),
+      ST_X(NEW.geom), ST_Y(NEW.geom))
+      )
+      END
+    FROM "SATURN_footprint_32N" 
+    WHERE (type_name = new.type_name AND area_type = 'fundament')
+    )
+  WHEN 'crane_pad' THEN
+    (SELECT 
+      CASE new.wayside 
+      WHEN 're' THEN ATM_Transform(geom,
+      ATM_Translate(
+      ATM_CreateRotate(
+      (-90-new.angle_degree)),
+      ST_X(NEW.geom), ST_Y(NEW.geom))
+      )
+      ELSE ATM_Transform(geom,
+      ATM_Translate(
+      ATM_Rotate(
+      ATM_CreateXRoll(180),
+      (-90-new.angle_degree)),
+      ST_X(NEW.geom), ST_Y(NEW.geom))
+      )
+      END
+    FROM "SATURN_footprint_32N" 
+    WHERE (type_name = new.type_name AND area_type = 'crane_pad')
+    )
+  WHEN 'access_road' THEN
+    (SELECT 
+      CASE new.wayside 
+      WHEN 're' THEN ATM_Transform(geom,
+      ATM_Translate(
+      ATM_CreateRotate(
+      (-90-new.angle_degree)),
+      ST_X(NEW.geom), ST_Y(NEW.geom))
+      )
+      ELSE ATM_Transform(geom,
+      ATM_Translate(
+      ATM_Rotate(
+      ATM_CreateXRoll(180),
+      (-90-new.angle_degree)),
+      ST_X(NEW.geom), ST_Y(NEW.geom))
+      )
+      END
+    FROM "SATURN_footprint_32N" 
+    WHERE (type_name = new.type_name AND area_type = 'access_road')
+    )
+  END
+  WHERE fid_turbine = new.fid
+  ;
+END;
+
+
+DROP TRIGGER IF EXISTS delete_footprints;
+
+CREATE TRIGGER delete_footprints
+ AFTER DELETE ON PLAN_location_32N
+ BEGIN
+ DELETE FROM "PLAN_footprint_32N" 
+ WHERE fid_turbine = old.fid;
+END;
+
+DROP TRIGGER IF EXISTS update_footprints_visibility;
+
+CREATE TRIGGER update_footprints_visibility 
+AFTER UPDATE OF is_visible ON PLAN_location_32N
+FOR EACH ROW
+  BEGIN
+    UPDATE "PLAN_footprint_32N" 
+		SET is_visible =  
+			CASE 
+				WHEN new.is_visible = 0 THEN 0
+				WHEN new.is_visible = 1 THEN 1
+				END
+		WHERE fid_turbine = NEW.fid;
+ END;
+-- SQLBook: Code
+--wayside
+DROP TRIGGER IF EXISTS insert_wayside;
+
+CREATE TRIGGER insert_wayside
+BEFORE INSERT ON SATURN_wayside_32N
+BEGIN
+	INSERT INTO PLAN_location_32N(geom, turb_name, turb_num, type_name, type_id, rotor_radius, custom_dist1, custom_dist2, project_id, easem_radius, total_height, angle_degree, wayside, version, is_visible)
+	VALUES((select 
+	CASE new.wayside
+	WHEN 're' THEN
+	ATM_Transform(MakePoint(0,new.way_distance,25832),
+			ATM_Translate(
+				ATM_CreateRotate(
+				-90-cdeg),
+			cx, cy)
+	)
+	ELSE
+		ATM_Transform(MakePoint(0,new.way_distance,25832),
+			ATM_Translate(
+				ATM_CreateRotate(
+				90-cdeg),
+			cx, cy)
+	)
+	END
+	FROM (SELECT ST_X(ST_StartPoint(new.geom)) as cx,
+	ST_Y(ST_Startpoint(new.geom)) as cy,
+	degrees(ST_Azimuth(ST_StartPoint(new.geom),ST_EndPoint(new.geom))) as cdeg
+	FROM SATURN_wayside_32N) as g1),
+	NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, degrees(ST_Azimuth(ST_StartPoint(new.geom),ST_EndPoint(new.geom))), new.wayside, NULL, 1);
+END;
+
+DROP TRIGGER IF EXISTS update_wayside_line;
+
+CREATE TRIGGER update_wayside_line
+AFTER INSERT ON SATURN_wayside_32N
+BEGIN
+	UPDATE SATURN_wayside_32N
+	SET
+	geom = MakeLine(StartPoint(new.geom),PointN(new.geom,2)),
+	fid_turbine = (SELECT fid from PLAN_location_32N ORDER BY fid DESC LIMIT 1),
+	is_visible = 1
+	WHERE id = new.id;
+END;
+
+
+DROP TRIGGER IF EXISTS update_wayside;
+
+CREATE TRIGGER update_wayside
+AFTER UPDATE OF geom, wayside, way_distance ON SATURN_wayside_32N
+BEGIN
+	UPDATE PLAN_location_32N
+	SET
+		angle_degree = degrees(ST_Azimuth(ST_StartPoint(new.geom),ST_EndPoint(new.geom))),
+		geom = (select 
+	CASE new.wayside
+	WHEN 're' THEN
+	ATM_Transform(MakePoint(0,new.way_distance,25832),
+			ATM_Translate(
+				ATM_CreateRotate(
+				-90-cdeg),
+			cx, cy)
+	)
+	ELSE
+		ATM_Transform(MakePoint(0,new.way_distance,25832),
+			ATM_Translate(
+				ATM_CreateRotate(
+				90-cdeg),
+			cx, cy)
+	)
+	END
+	FROM (SELECT ST_X(ST_StartPoint(new.geom)) as cx,
+	ST_Y(ST_Startpoint(new.geom)) as cy,
+	degrees(ST_Azimuth(ST_StartPoint(new.geom),ST_EndPoint(new.geom))) as cdeg
+	FROM SATURN_wayside_32N) as g1)
+	WHERE fid = new.fid_turbine;
+END;
+
+
+DROP TRIGGER IF EXISTS delete_wayside;
+
+CREATE TRIGGER delete_wayside
+ AFTER DELETE ON PLAN_location_32N
+ BEGIN
+ DELETE FROM SATURN_wayside_32N
+ WHERE fid_turbine = old.fid;
+END;
+
+DROP TRIGGER IF EXISTS update_wayside_visibility;
+
+CREATE TRIGGER update_wayside_visibility 
+AFTER UPDATE OF is_visible ON PLAN_location_32N
+FOR EACH ROW
+  BEGIN
+    UPDATE SATURN_wayside_32n 
+		SET is_visible =  
+			CASE 
+				WHEN new.is_visible = 0 THEN 0
+				WHEN new.is_visible = 1 THEN 1
+				END
+		WHERE fid_turbine = NEW.fid;
+ END;
+
+-- SQLBook: Code
+--outlines
+DROP TRIGGER IF EXISTS insert_new_outline;
+
+CREATE TRIGGER insert_new_outline
+  AFTER UPDATE OF type_name ON PLAN_location_32N
+  BEGIN
+  INSERT INTO PLAN_outlines_32N(geom, id_type, fid_turbine, is_visible, version, project_id)
+  VALUES((
+  select CASE new.wayside 
+  WHEN 're' THEN ATM_Transform(geom,
+  ATM_Translate(
+  ATM_CreateRotate(
+  (-90-new.angle_degree)),
+  ST_X(NEW.geom), ST_Y(NEW.geom))
+  )
+  ELSE ATM_Transform(geom,
+  ATM_Translate(
+  ATM_Rotate(
+  ATM_CreateXRoll(180),
+  (-90-new.angle_degree)),
+  ST_X(NEW.geom), ST_Y(NEW.geom))
+  )
+  END
+  from SATURN_outlines_32N WHERE SATURN_outlines_32N.type_name = new.type_name
+  )
+  ,1,new.fid, new.is_visible, new.version, new.project_id); 
+END;
+
+DROP TRIGGER IF EXISTS update_outline;
+
+CREATE TRIGGER update_outline
+  AFTER UPDATE OF wayside, angle_degree, type_name, geom ON PLAN_location_32N
+  FOR EACH ROW
+  BEGIN
+  UPDATE PLAN_outlines_32N
+  SET
+  geom =
+  (select CASE new.wayside 
+  WHEN 're' THEN ATM_Transform(geom,
+  ATM_Translate(
+  ATM_CreateRotate(
+  (-90-new.angle_degree)),
+  ST_X(NEW.geom), ST_Y(NEW.geom))
+  )
+  ELSE ATM_Transform(geom,
+  ATM_Translate(
+  ATM_Rotate(
+  ATM_CreateXRoll(180),
+  (-90-new.angle_degree)),
+  ST_X(NEW.geom), ST_Y(NEW.geom))
+  )
+  END
+  from SATURN_outlines_32N WHERE SATURN_outlines_32N.type_name = new.type_name
+  )
+  WHERE fid_turbine = new.fid
+  ;
+END;
+
+
+DROP TRIGGER IF EXISTS delete_outline;
+
+CREATE TRIGGER delete_outline
+ AFTER DELETE ON PLAN_location_32N
+ BEGIN
+ DELETE FROM PLAN_outlines_32N 
+ WHERE fid_turbine = old.fid;
+END;
+
+DROP TRIGGER IF EXISTS update_outlines_visibility;
+
+CREATE TRIGGER update_outlines_visibility 
+AFTER UPDATE OF is_visible ON PLAN_location_32N
+FOR EACH ROW
+  BEGIN
+    UPDATE PLAN_outlines_32N 
+		SET is_visible =  
+			CASE 
+				WHEN new.is_visible = 0 THEN 0
+				WHEN new.is_visible = 1 THEN 1
+				END
+		WHERE fid_turbine = NEW.fid;
+ END;
+-- SQLBook: Code
+--rolocation
+DROP TRIGGER if EXISTS insert_rolocation;
+
+CREATE TRIGGER insert_rolocation
+BEFORE INSERT ON PLAN_rolocation_32N
+BEGIN
+	INSERT INTO PLAN_location_32N(geom, turb_name, turb_num, type_name, type_id, rotor_radius, custom_dist1, custom_dist2, project_id, easem_radius, total_height, angle_degree, wayside, version, is_visible)
+	VALUES((ST_StartPoint(new.geom)), NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, degrees(ST_Azimuth(ST_StartPoint(new.geom),ST_EndPoint(new.geom))),new.wayside, NULL, TRUE);
+END;
+
+DROP TRIGGER IF EXISTS update_rolocation_line;
+
+CREATE TRIGGER update_rolocation_line
+AFTER INSERT ON PLAN_rolocation_32n
+BEGIN
+	UPDATE PLAN_rolocation_32n
+	SET
+	geom = MakeLine(ST_StartPoint(geom),ST_ClosestPoint(geom, (ST_Buffer(ST_StartPoint(geom),86)))), 
+	fid_turbine = (SELECT fid from PLAN_location_32N WHERE ST_Intersects(geom, ST_StartPoint(new.geom)))
+	--ST_SetPoint(geom,1,ST_SNAP(ST_EndPoint(geom), (SELECT ST_Buffer((ST_StartPoint(geom)), rotor_radius) FROM PLAN_location_32N),0))
+	WHERE fid = new.fid;
+END;
+
+DROP TRIGGER IF EXISTS update_rolocation;
+
+CREATE TRIGGER update_rolocation
+AFTER UPDATE OF geom ON PLAN_rolocation_32n
+BEGIN
+	UPDATE PLAN_location_32N
+	SET
+		angle_degree = degrees(ST_Azimuth(ST_StartPoint(new.geom),ST_EndPoint(new.geom))),
+		geom = ST_StartPoint(new.geom)
+	WHERE fid = new.fid_turbine;
+END;
+
+DROP TRIGGER IF EXISTS update_location_rolocation;
+
+CREATE TRIGGER update_location_rolocation
+AFTER UPDATE OF geom ON PLAN_location_32N
+BEGIN
+	UPDATE PLAN_rolocation_32N
+	SET
+		geom = MakeLine(ST_StartPoint(NEW.geom),ST_ClosestPoint(geom, (ST_Buffer(ST_StartPoint(NEW.geom),86))))
+	WHERE fid_turbine=NEW.fid;
+END;
+
+DROP TRIGGER IF EXISTS update_rolocation_visibility;
+
+CREATE TRIGGER update_rolocation_visibility 
+AFTER UPDATE OF is_visible ON PLAN_location_32N
+FOR EACH ROW
+  BEGIN
+    UPDATE PLAN_rolocation_32n 
+		SET is_visible =  
+			CASE 
+				WHEN new.is_visible = 0 THEN 0
+				WHEN new.is_visible = 1 THEN 1
+				END
+		WHERE fid_turbine = NEW.fid;
+ END;
+
+DROP TRIGGER IF EXISTS delete_rolocation;
+
+CREATE TRIGGER delete_rolocation
+ AFTER DELETE ON PLAN_location_32N
+ BEGIN
+ DELETE FROM PLAN_rolocation_32n
+ WHERE fid_turbine = old.fid;
+END;
+
+/*
+DROP TRIGGER IF EXISTS update_rolocation_angle;
+
+CREATE TRIGGER update_rolocation_angle
+AFTER UPDATE ON PLAN_rolocation_32n
+	BEGIN
+		UPDATE PLAN_outlines_32N
+		SET
+		geom = (select ATM_Transform(geom,
+			ATM_Translate(
+				ATM_CreateRotate(
+				new.angle_degree),
+			ST_X(ST_StartPoint(new.geom)), ST_Y(ST_Startpoint(new.geom))
+	))from SATURN_outlines_32N)
+	WHERE fid = new.fid;
+	END;
+;
+*/
+
