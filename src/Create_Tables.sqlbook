@@ -65,7 +65,7 @@ CREATE TABLE 'HELPER_way_32N' (
   way_distance REAL,
   fid_turbine INTEGER,
   description TEXT,
-  is_visible BOOLEAN TRUE,
+  is_visible BOOLEAN,
   FOREIGN KEY (fid_turbine)
   REFERENCES PLAN_location_32N(fid) 
     ON UPDATE CASCADE
