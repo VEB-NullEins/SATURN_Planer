@@ -1,0 +1,87 @@
+-- SQLBook: Code
+Drop VIEW IF EXISTS VIEW_rotor_32N;
+
+CREATE VIEW VIEW_rotor_32N
+  AS select fid, is_visible, rotor_radius, st_buffer(geom, rotor_radius) as geom
+  from PLAN_location_32N;
+
+INSERT INTO gpkg_contents(table_name,data_type,identifier,srs_id)
+VALUES ('VIEW_rotor_32N','features','VIEW_rotor_32N',25832);
+
+INSERT INTO gpkg_geometry_columns(table_name,column_name,geometry_type_name,srs_id,z,m)
+VALUES ('VIEW_rotor_32N','geom','CURVEPOLYGON',25832,0,0);
+INSERT INTO gpkg_ogr_contents(table_name,feature_count)
+ VALUES ('VIEW_rotor_32N', 0)
+
+Drop VIEW IF EXISTS VIEW_customdist1_32N;
+
+CREATE VIEW VIEW_customdist1_32N
+  AS select fid, is_visible, custom_dist1, st_buffer(geom, custom_dist1) as geom
+  from PLAN_location_32N;
+
+INSERT INTO gpkg_contents(table_name,data_type,identifier,srs_id)
+VALUES ('VIEW_customdist1_32N','features','VIEW_customdist1_32N',25832);
+
+INSERT INTO gpkg_geometry_columns(table_name,column_name,geometry_type_name,srs_id,z,m)
+VALUES ('VIEW_customdist1_32N','geom','CURVEPOLYGON',25832,0,0);
+INSERT INTO gpkg_ogr_contents(table_name,feature_count)
+ VALUES ('VIEW_customdist1_32N', 0)
+
+
+Drop VIEW IF EXISTS VIEW_customdist2_32N;
+
+CREATE VIEW VIEW_customdist2_32N
+  AS select fid, is_visible, custom_dist2, st_buffer(geom, custom_dist2) as geom
+  from PLAN_location_32N;
+
+INSERT INTO gpkg_contents(table_name,data_type,identifier,srs_id)
+VALUES ('VIEW_customdist2_32N','features','VIEW_customdist2_32N',25832);
+
+INSERT INTO gpkg_geometry_columns(table_name,column_name,geometry_type_name,srs_id,z,m)
+VALUES ('VIEW_customdist2_32N','geom','CURVEPOLYGON',25832,0,0);
+INSERT INTO gpkg_ogr_contents(table_name,feature_count)
+ VALUES ('VIEW_customdist2_32N', 0)
+
+Drop VIEW IF EXISTS VIEW_easement_32N;
+
+CREATE VIEW VIEW_easement_32N
+  AS select fid, is_visible, easem_radius, st_buffer(geom, easem_radius) as geom
+  from PLAN_location_32N;
+
+INSERT INTO gpkg_contents(table_name,data_type,identifier,srs_id)
+VALUES ('VIEW_easement_32N','features','VIEW_easement_32N',25832);
+
+INSERT INTO gpkg_geometry_columns(table_name,column_name,geometry_type_name,srs_id,z,m)
+VALUES ('VIEW_easement_32N','geom','CURVEPOLYGON',25832,0,0);
+INSERT INTO gpkg_ogr_contents(table_name,feature_count)
+ VALUES ('VIEW_easement_32N', 0)
+
+Drop VIEW IF EXISTS VIEW_turbulence_32N;
+
+CREATE VIEW VIEW_turbulence_32N
+  AS select fid, wind_angle, is_visible, 
+  CASE wind_angle WHEN 1000 THEN 
+  ATM_Transform(MakeCircle(0, 0, (rotor_radius*3), 25832),
+  ATM_Translate(
+  ATM_CreateRotate(
+  wind_angle),
+  ST_X(geom), ST_Y(geom))
+  )
+  ELSE
+  ATM_Transform(MakeEllipse(0, 0, (rotor_radius*3), (rotor_radius*4), 25832),
+  ATM_Translate(
+  ATM_CreateRotate(
+  wind_angle),
+  ST_X(geom), ST_Y(geom))
+  )
+  END
+  as geom
+  from PLAN_location_32N;
+
+INSERT INTO gpkg_contents(table_name,data_type,identifier,srs_id)
+VALUES ('VIEW_turbulence_32N','features','VIEW_turbulence_32N',25832);
+
+INSERT INTO gpkg_geometry_columns(table_name,column_name,geometry_type_name,srs_id,z,m)
+VALUES ('VIEW_turbulence_32N','geom','LINESTRING',25832,0,0);
+INSERT INTO gpkg_ogr_contents(table_name,feature_count)
+ VALUES ('VIEW_turbulence_32N', 0)
