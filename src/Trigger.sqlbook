@@ -37,7 +37,7 @@ BEGIN
 		custom_dist1 = (SELECT custom_dist1 FROM "HELPER_projarea_32N" WHERE st_intersects(new.geom, geom)),
 		custom_dist2 = (SELECT custom_dist2 FROM "HELPER_projarea_32N" WHERE st_intersects(new.geom, geom)),
 		type_name = (SELECT type_name FROM "HELPER_projarea_32N" WHERE st_intersects(new.geom, geom)),
-		rotor_radius = (SELECT SATURN_outlines_32N.rotor_radius FROM SATURN_outlines_32N, "HELPER_projarea_32N" WHERE SATURN_outlines_32N.type_name = "HELPER_projarea_32N".type_name AND st_intersects(new.geom, (SELECT geom FROM "HELPER_projarea_32N")) ),
+		rotor_radius = (SELECT rotor_radius FROM SATURN_outlines_32N, "HELPER_projarea_32N" WHERE SATURN_outlines_32N.type_name = "HELPER_projarea_32N".type_name),
 		wind_angle = (SELECT wind_angle FROM "HELPER_projarea_32N" WHERE st_intersects(new.geom, geom)),
 		easem_radius = (SELECT CASE rule_key
 							WHEN 'rotor_radius' THEN (SELECT rotor_radius FROM SATURN_outlines_32N, "HELPER_projarea_32N" WHERE SATURN_outlines_32N.type_name = "HELPER_projarea_32N".type_name)
