@@ -61,14 +61,14 @@ Drop VIEW IF EXISTS VIEW_turbulence_32N;
 CREATE VIEW VIEW_turbulence_32N
   AS select fid, wind_angle, is_visible, 
   CASE wind_angle WHEN 1000 THEN 
-  ATM_Transform(MakeCircle(0, 0, (rotor_radius*3), 25832),
+  ATM_Transform(MakeCircle(0, 0, (rotor_radius*6), 25832),
   ATM_Translate(
   ATM_CreateRotate(
   wind_angle),
   ST_X(geom), ST_Y(geom))
   )
   ELSE
-  ATM_Transform(MakeEllipse(0, 0, (rotor_radius*3), (rotor_radius*4), 25832),
+  ATM_Transform(MakeEllipse(0, 0, (rotor_radius*6), (rotor_radius*8), 25832),
   ATM_Translate(
   ATM_CreateRotate(
   wind_angle),
