@@ -1,0 +1,763 @@
+<!DOCTYPE qgis-layer-definition>
+<qlr>
+  <layer-tree-group groupLayer="" name="" expanded="1" checked="Qt::Checked">
+    <customproperties>
+      <Option/>
+    </customproperties>
+    <layer-tree-layer legend_exp="" source="./SATURN_Planer.gpkg|layername=PLAN_location_32N|subset=&quot;is_visible&quot;" legend_split_behavior="0" name="Standort WEA" providerKey="ogr" id="PLAN_location_32N_2f914b2a_0c9b_4714_a56e_25c21ddbca57" patch_size="-1,-1" expanded="1" checked="Qt::Checked">
+      <customproperties>
+        <Option/>
+      </customproperties>
+    </layer-tree-layer>
+  </layer-tree-group>
+  <maplayers>
+    <maplayer refreshOnNotifyMessage="" minScale="100000000" simplifyAlgorithm="0" simplifyMaxScale="1" autoRefreshMode="Disabled" simplifyLocal="1" readOnly="0" refreshOnNotifyEnabled="0" symbologyReferenceScale="-1" autoRefreshTime="0" geometry="Point" simplifyDrawingTol="1" hasScaleBasedVisibilityFlag="0" maxScale="0" labelsEnabled="0" type="vector" styleCategories="AllStyleCategories" wkbType="Point" legendPlaceholderImage="" simplifyDrawingHints="0">
+      <extent>
+        <xmin>719934.99492014793213457</xmin>
+        <ymin>5389443.60214453563094139</ymin>
+        <xmax>723711.35417843167670071</xmax>
+        <ymax>5433135.13891202677041292</ymax>
+      </extent>
+      <wgs84extent>
+        <xmin>11.98443231796549746</xmin>
+        <ymin>48.61802693510742301</ymin>
+        <xmax>12.05941335093833011</xmax>
+        <ymax>49.01187248128112373</ymax>
+      </wgs84extent>
+      <id>PLAN_location_32N_2f914b2a_0c9b_4714_a56e_25c21ddbca57</id>
+      <datasource>./SATURN_Planer.gpkg|layername=PLAN_location_32N|subset="is_visible"</datasource>
+      <layername>Standort WEA</layername>
+      <srs>
+        <spatialrefsys nativeFormat="Wkt">
+          <wkt>PROJCRS["ETRS89 / UTM zone 32N",BASEGEOGCRS["ETRS89",ENSEMBLE["European Terrestrial Reference System 1989 ensemble",MEMBER["European Terrestrial Reference Frame 1989"],MEMBER["European Terrestrial Reference Frame 1990"],MEMBER["European Terrestrial Reference Frame 1991"],MEMBER["European Terrestrial Reference Frame 1992"],MEMBER["European Terrestrial Reference Frame 1993"],MEMBER["European Terrestrial Reference Frame 1994"],MEMBER["European Terrestrial Reference Frame 1996"],MEMBER["European Terrestrial Reference Frame 1997"],MEMBER["European Terrestrial Reference Frame 2000"],MEMBER["European Terrestrial Reference Frame 2005"],MEMBER["European Terrestrial Reference Frame 2014"],ELLIPSOID["GRS 1980",6378137,298.257222101,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[0.1]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4258]],CONVERSION["UTM zone 32N",METHOD["Transverse Mercator",ID["EPSG",9807]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",9,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["Scale factor at natural origin",0.9996,SCALEUNIT["unity",1],ID["EPSG",8805]],PARAMETER["False easting",500000,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Engineering survey, topographic mapping."],AREA["Europe between 6°E and 12°E: Austria; Belgium; Denmark - onshore and offshore; Germany - onshore and offshore; Norway including - onshore and offshore; Spain - offshore."],BBOX[38.76,6,84.33,12.01]],ID["EPSG",25832]]</wkt>
+          <proj4>+proj=utm +zone=32 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
+          <srsid>2105</srsid>
+          <srid>25832</srid>
+          <authid>EPSG:25832</authid>
+          <description>ETRS89 / UTM zone 32N</description>
+          <projectionacronym>utm</projectionacronym>
+          <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+          <geographicflag>false</geographicflag>
+        </spatialrefsys>
+      </srs>
+      <resourceMetadata>
+        <identifier></identifier>
+        <parentidentifier></parentidentifier>
+        <language></language>
+        <type>dataset</type>
+        <title></title>
+        <abstract></abstract>
+        <contact>
+          <name></name>
+          <organization></organization>
+          <position></position>
+          <voice></voice>
+          <fax></fax>
+          <email></email>
+          <role></role>
+        </contact>
+        <links/>
+        <dates/>
+        <fees></fees>
+        <encoding></encoding>
+        <crs>
+          <spatialrefsys nativeFormat="Wkt">
+            <wkt>PROJCRS["ETRS89 / UTM zone 32N",BASEGEOGCRS["ETRS89",ENSEMBLE["European Terrestrial Reference System 1989 ensemble",MEMBER["European Terrestrial Reference Frame 1989"],MEMBER["European Terrestrial Reference Frame 1990"],MEMBER["European Terrestrial Reference Frame 1991"],MEMBER["European Terrestrial Reference Frame 1992"],MEMBER["European Terrestrial Reference Frame 1993"],MEMBER["European Terrestrial Reference Frame 1994"],MEMBER["European Terrestrial Reference Frame 1996"],MEMBER["European Terrestrial Reference Frame 1997"],MEMBER["European Terrestrial Reference Frame 2000"],MEMBER["European Terrestrial Reference Frame 2005"],MEMBER["European Terrestrial Reference Frame 2014"],ELLIPSOID["GRS 1980",6378137,298.257222101,LENGTHUNIT["metre",1]],ENSEMBLEACCURACY[0.1]],PRIMEM["Greenwich",0,ANGLEUNIT["degree",0.0174532925199433]],ID["EPSG",4258]],CONVERSION["UTM zone 32N",METHOD["Transverse Mercator",ID["EPSG",9807]],PARAMETER["Latitude of natural origin",0,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8801]],PARAMETER["Longitude of natural origin",9,ANGLEUNIT["degree",0.0174532925199433],ID["EPSG",8802]],PARAMETER["Scale factor at natural origin",0.9996,SCALEUNIT["unity",1],ID["EPSG",8805]],PARAMETER["False easting",500000,LENGTHUNIT["metre",1],ID["EPSG",8806]],PARAMETER["False northing",0,LENGTHUNIT["metre",1],ID["EPSG",8807]]],CS[Cartesian,2],AXIS["(E)",east,ORDER[1],LENGTHUNIT["metre",1]],AXIS["(N)",north,ORDER[2],LENGTHUNIT["metre",1]],USAGE[SCOPE["Engineering survey, topographic mapping."],AREA["Europe between 6°E and 12°E: Austria; Belgium; Denmark - onshore and offshore; Germany - onshore and offshore; Norway including - onshore and offshore; Spain - offshore."],BBOX[38.76,6,84.33,12.01]],ID["EPSG",25832]]</wkt>
+            <proj4>+proj=utm +zone=32 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs</proj4>
+            <srsid>2105</srsid>
+            <srid>25832</srid>
+            <authid>EPSG:25832</authid>
+            <description>ETRS89 / UTM zone 32N</description>
+            <projectionacronym>utm</projectionacronym>
+            <ellipsoidacronym>EPSG:7019</ellipsoidacronym>
+            <geographicflag>false</geographicflag>
+          </spatialrefsys>
+        </crs>
+        <extent>
+          <spatial dimensions="2" miny="179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368" maxx="-179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368" maxy="-179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368" minz="0" maxz="0" crs="EPSG:25832" minx="179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368"/>
+          <temporal>
+            <period>
+              <start></start>
+              <end></end>
+            </period>
+          </temporal>
+        </extent>
+      </resourceMetadata>
+      <provider encoding="UTF-8">ogr</provider>
+      <vectorjoins/>
+      <layerDependencies/>
+      <dataDependencies>
+        <layer id="HELPER_projarea_32N_f3c08ad2_e70c_4bb4_98e0_1de6945b88ae"/>
+        <layer id="HELPER_way_32N_2dbe6230_e3a8_4904_b088_a4c32521f6de"/>
+        <layer id="HELPER_centerline_32N_548c2163_5ba8_48a5_9967_8ed4772864de"/>
+      </dataDependencies>
+      <expressionfields/>
+      <map-layer-style-manager current="default">
+        <map-layer-style name="default"/>
+      </map-layer-style-manager>
+      <auxiliaryLayer/>
+      <flags>
+        <Identifiable>1</Identifiable>
+        <Removable>1</Removable>
+        <Searchable>1</Searchable>
+        <Private>0</Private>
+      </flags>
+      <temporal accumulate="0" limitMode="0" endField="" enabled="0" durationUnit="min" startExpression="" fixedDuration="0" startField="" durationField="fid" mode="0" endExpression="">
+        <fixedRange>
+          <start></start>
+          <end></end>
+        </fixedRange>
+      </temporal>
+      <elevation zoffset="0" symbology="Line" type="IndividualFeatures" binding="Centroid" extrusion="0" respectLayerSymbol="1" zscale="1" customToleranceEnabled="0" showMarkerSymbolInSurfacePlots="0" extrusionEnabled="0" clamping="Terrain">
+        <data-defined-properties>
+          <Option type="Map">
+            <Option type="QString" value="" name="name"/>
+            <Option name="properties"/>
+            <Option type="QString" value="collection" name="type"/>
+          </Option>
+        </data-defined-properties>
+        <profileLineSymbol>
+          <symbol type="line" alpha="1" force_rhr="0" name="" clip_to_extent="1" is_animated="0" frame_rate="10">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer enabled="1" locked="0" class="SimpleLine" id="{bf15d815-26b6-4024-a13a-ab3435250d24}" pass="0">
+              <Option type="Map">
+                <Option type="QString" value="0" name="align_dash_pattern"/>
+                <Option type="QString" value="square" name="capstyle"/>
+                <Option type="QString" value="5;2" name="customdash"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="customdash_map_unit_scale"/>
+                <Option type="QString" value="MM" name="customdash_unit"/>
+                <Option type="QString" value="0" name="dash_pattern_offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="dash_pattern_offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="dash_pattern_offset_unit"/>
+                <Option type="QString" value="0" name="draw_inside_polygon"/>
+                <Option type="QString" value="bevel" name="joinstyle"/>
+                <Option type="QString" value="232,113,141,255,rgb:0.9098039,0.4431373,0.5529412,1" name="line_color"/>
+                <Option type="QString" value="solid" name="line_style"/>
+                <Option type="QString" value="0.6" name="line_width"/>
+                <Option type="QString" value="MM" name="line_width_unit"/>
+                <Option type="QString" value="0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="0" name="ring_filter"/>
+                <Option type="QString" value="0" name="trim_distance_end"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="trim_distance_end_map_unit_scale"/>
+                <Option type="QString" value="MM" name="trim_distance_end_unit"/>
+                <Option type="QString" value="0" name="trim_distance_start"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="trim_distance_start_map_unit_scale"/>
+                <Option type="QString" value="MM" name="trim_distance_start_unit"/>
+                <Option type="QString" value="0" name="tweak_dash_pattern_on_corners"/>
+                <Option type="QString" value="0" name="use_custom_dash"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="width_map_unit_scale"/>
+              </Option>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </profileLineSymbol>
+        <profileFillSymbol>
+          <symbol type="fill" alpha="1" force_rhr="0" name="" clip_to_extent="1" is_animated="0" frame_rate="10">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer enabled="1" locked="0" class="SimpleFill" id="{6e51ed55-5915-412c-9bac-276851e8f33a}" pass="0">
+              <Option type="Map">
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="border_width_map_unit_scale"/>
+                <Option type="QString" value="232,113,141,255,rgb:0.9098039,0.4431373,0.5529412,1" name="color"/>
+                <Option type="QString" value="bevel" name="joinstyle"/>
+                <Option type="QString" value="0,0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="166,81,101,255,rgb:0.6498512,0.3165179,0.3949645,1" name="outline_color"/>
+                <Option type="QString" value="solid" name="outline_style"/>
+                <Option type="QString" value="0.2" name="outline_width"/>
+                <Option type="QString" value="MM" name="outline_width_unit"/>
+                <Option type="QString" value="solid" name="style"/>
+              </Option>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </profileFillSymbol>
+        <profileMarkerSymbol>
+          <symbol type="marker" alpha="1" force_rhr="0" name="" clip_to_extent="1" is_animated="0" frame_rate="10">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer enabled="1" locked="0" class="SimpleMarker" id="{177e0ee4-b148-47c9-93bf-9f9fc1d4b745}" pass="0">
+              <Option type="Map">
+                <Option type="QString" value="0" name="angle"/>
+                <Option type="QString" value="square" name="cap_style"/>
+                <Option type="QString" value="232,113,141,255,rgb:0.9098039,0.4431373,0.5529412,1" name="color"/>
+                <Option type="QString" value="1" name="horizontal_anchor_point"/>
+                <Option type="QString" value="bevel" name="joinstyle"/>
+                <Option type="QString" value="diamond" name="name"/>
+                <Option type="QString" value="0,0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="166,81,101,255,rgb:0.6498512,0.3165179,0.3949645,1" name="outline_color"/>
+                <Option type="QString" value="solid" name="outline_style"/>
+                <Option type="QString" value="0.2" name="outline_width"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="outline_width_map_unit_scale"/>
+                <Option type="QString" value="MM" name="outline_width_unit"/>
+                <Option type="QString" value="diameter" name="scale_method"/>
+                <Option type="QString" value="3" name="size"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="size_map_unit_scale"/>
+                <Option type="QString" value="MM" name="size_unit"/>
+                <Option type="QString" value="1" name="vertical_anchor_point"/>
+              </Option>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </profileMarkerSymbol>
+      </elevation>
+      <renderer-v2 type="singleSymbol" forceraster="0" enableorderby="0" referencescale="-1" symbollevels="0">
+        <symbols>
+          <symbol type="marker" alpha="1" force_rhr="0" name="0" clip_to_extent="1" is_animated="0" frame_rate="10">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer enabled="1" locked="0" class="SvgMarker" id="{ad539c2e-9042-4ad3-af79-ac2ab435b9c6}" pass="0">
+              <Option type="Map">
+                <Option type="QString" value="0" name="angle"/>
+                <Option type="QString" value="0,0,255,255,rgb:0,0,1,1" name="color"/>
+                <Option type="QString" value="0" name="fixedAspectRatio"/>
+                <Option type="QString" value="1" name="horizontal_anchor_point"/>
+                <Option type="QString" value="crosses/Cross2.svg" name="name"/>
+                <Option type="QString" value="0,0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="255,255,255,255,rgb:1,1,1,1" name="outline_color"/>
+                <Option type="QString" value="0" name="outline_width"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="outline_width_map_unit_scale"/>
+                <Option type="QString" value="MM" name="outline_width_unit"/>
+                <Option name="parameters"/>
+                <Option type="QString" value="diameter" name="scale_method"/>
+                <Option type="QString" value="5" name="size"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="size_map_unit_scale"/>
+                <Option type="QString" value="MM" name="size_unit"/>
+                <Option type="QString" value="1" name="vertical_anchor_point"/>
+              </Option>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option type="Map" name="properties">
+                    <Option type="Map" name="enabled">
+                      <Option type="bool" value="false" name="active"/>
+                      <Option type="int" value="1" name="type"/>
+                      <Option type="QString" value="" name="val"/>
+                    </Option>
+                  </Option>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </symbols>
+        <rotation/>
+        <sizescale/>
+        <data-defined-properties>
+          <Option type="Map">
+            <Option type="QString" value="" name="name"/>
+            <Option name="properties"/>
+            <Option type="QString" value="collection" name="type"/>
+          </Option>
+        </data-defined-properties>
+      </renderer-v2>
+      <selection mode="Default">
+        <selectionColor invalid="1"/>
+        <selectionSymbol>
+          <symbol type="marker" alpha="1" force_rhr="0" name="" clip_to_extent="1" is_animated="0" frame_rate="10">
+            <data_defined_properties>
+              <Option type="Map">
+                <Option type="QString" value="" name="name"/>
+                <Option name="properties"/>
+                <Option type="QString" value="collection" name="type"/>
+              </Option>
+            </data_defined_properties>
+            <layer enabled="1" locked="0" class="SimpleMarker" id="{cae67aa1-05be-4fd4-9dc8-a08fb2db9a8f}" pass="0">
+              <Option type="Map">
+                <Option type="QString" value="0" name="angle"/>
+                <Option type="QString" value="square" name="cap_style"/>
+                <Option type="QString" value="255,0,0,255,rgb:1,0,0,1" name="color"/>
+                <Option type="QString" value="1" name="horizontal_anchor_point"/>
+                <Option type="QString" value="bevel" name="joinstyle"/>
+                <Option type="QString" value="circle" name="name"/>
+                <Option type="QString" value="0,0" name="offset"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="offset_map_unit_scale"/>
+                <Option type="QString" value="MM" name="offset_unit"/>
+                <Option type="QString" value="35,35,35,255,rgb:0.1372549,0.1372549,0.1372549,1" name="outline_color"/>
+                <Option type="QString" value="solid" name="outline_style"/>
+                <Option type="QString" value="0" name="outline_width"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="outline_width_map_unit_scale"/>
+                <Option type="QString" value="MM" name="outline_width_unit"/>
+                <Option type="QString" value="diameter" name="scale_method"/>
+                <Option type="QString" value="2" name="size"/>
+                <Option type="QString" value="3x:0,0,0,0,0,0" name="size_map_unit_scale"/>
+                <Option type="QString" value="MM" name="size_unit"/>
+                <Option type="QString" value="1" name="vertical_anchor_point"/>
+              </Option>
+              <data_defined_properties>
+                <Option type="Map">
+                  <Option type="QString" value="" name="name"/>
+                  <Option name="properties"/>
+                  <Option type="QString" value="collection" name="type"/>
+                </Option>
+              </data_defined_properties>
+            </layer>
+          </symbol>
+        </selectionSymbol>
+      </selection>
+      <customproperties>
+        <Option type="Map">
+          <Option type="List" name="dualview/previewExpressions">
+            <Option type="QString" value="&quot;turb_name&quot;"/>
+          </Option>
+          <Option type="int" value="0" name="embeddedWidgets/count"/>
+          <Option type="bool" value="true" name="qgis2web/Interactive"/>
+          <Option type="bool" value="true" name="qgis2web/Visible"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/angle_degree"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/custom_dist1"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/custom_dist2"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/easem_radius"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/fid"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/project_id"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/rotor_radius"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/total_height"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/turb_name"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/turb_num"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/type_id"/>
+          <Option type="QString" value="no label" name="qgis2web/popup/type_name"/>
+          <Option type="invalid" name="variableNames"/>
+          <Option type="invalid" name="variableValues"/>
+        </Option>
+      </customproperties>
+      <blendMode>0</blendMode>
+      <featureBlendMode>0</featureBlendMode>
+      <layerOpacity>1</layerOpacity>
+      <geometryOptions removeDuplicateNodes="0" geometryPrecision="0">
+        <activeChecks/>
+        <checkConfiguration/>
+      </geometryOptions>
+      <legend type="default-vector" showLabelLegend="0"/>
+      <referencedLayers/>
+      <fieldConfiguration>
+        <field name="fid" configurationFlags="NoFlag">
+          <editWidget type="TextEdit">
+            <config>
+              <Option/>
+            </config>
+          </editWidget>
+        </field>
+        <field name="turb_num" configurationFlags="NoFlag">
+          <editWidget type="Range">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="true" name="AllowNull"/>
+                <Option type="int" value="2147483647" name="Max"/>
+                <Option type="int" value="-2147483648" name="Min"/>
+                <Option type="int" value="0" name="Precision"/>
+                <Option type="int" value="1" name="Step"/>
+                <Option type="QString" value="SpinBox" name="Style"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="turb_name" configurationFlags="NoFlag">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="false" name="IsMultiline"/>
+                <Option type="bool" value="false" name="UseHtml"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="type_name" configurationFlags="NoFlag">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="false" name="IsMultiline"/>
+                <Option type="bool" value="false" name="UseHtml"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="type_id" configurationFlags="NoFlag">
+          <editWidget type="Range">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="true" name="AllowNull"/>
+                <Option type="int" value="2147483647" name="Max"/>
+                <Option type="int" value="-2147483648" name="Min"/>
+                <Option type="int" value="0" name="Precision"/>
+                <Option type="int" value="1" name="Step"/>
+                <Option type="QString" value="SpinBox" name="Style"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="rotor_radius" configurationFlags="NoFlag">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="false" name="IsMultiline"/>
+                <Option type="bool" value="false" name="UseHtml"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="custom_dist1" configurationFlags="NoFlag">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="false" name="IsMultiline"/>
+                <Option type="bool" value="false" name="UseHtml"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="custom_dist2" configurationFlags="NoFlag">
+          <editWidget type="Range">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="true" name="AllowNull"/>
+                <Option type="double" value="1.7976931348623157e+308" name="Max"/>
+                <Option type="double" value="-1.7976931348623157e+308" name="Min"/>
+                <Option type="int" value="0" name="Precision"/>
+                <Option type="double" value="1" name="Step"/>
+                <Option type="QString" value="SpinBox" name="Style"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="project_id" configurationFlags="NoFlag">
+          <editWidget type="Range">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="true" name="AllowNull"/>
+                <Option type="int" value="2147483647" name="Max"/>
+                <Option type="int" value="-2147483648" name="Min"/>
+                <Option type="int" value="0" name="Precision"/>
+                <Option type="int" value="1" name="Step"/>
+                <Option type="QString" value="SpinBox" name="Style"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="easem_radius" configurationFlags="NoFlag">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="false" name="IsMultiline"/>
+                <Option type="bool" value="false" name="UseHtml"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="total_height" configurationFlags="NoFlag">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="false" name="IsMultiline"/>
+                <Option type="bool" value="false" name="UseHtml"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="crane_angle" configurationFlags="NoFlag">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="false" name="IsMultiline"/>
+                <Option type="bool" value="false" name="UseHtml"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="wayside" configurationFlags="NoFlag">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="false" name="IsMultiline"/>
+                <Option type="bool" value="false" name="UseHtml"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="version" configurationFlags="NoFlag">
+          <editWidget type="TextEdit">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="false" name="IsMultiline"/>
+                <Option type="bool" value="false" name="UseHtml"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="wind_angle" configurationFlags="NoFlag">
+          <editWidget type="Range">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="true" name="AllowNull"/>
+                <Option type="int" value="2147483647" name="Max"/>
+                <Option type="int" value="-2147483648" name="Min"/>
+                <Option type="int" value="0" name="Precision"/>
+                <Option type="int" value="1" name="Step"/>
+                <Option type="QString" value="SpinBox" name="Style"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+        <field name="is_visible" configurationFlags="NoFlag">
+          <editWidget type="CheckBox">
+            <config>
+              <Option type="Map">
+                <Option type="bool" value="false" name="AllowNullState"/>
+                <Option type="invalid" name="CheckedState"/>
+                <Option type="int" value="0" name="TextDisplayMethod"/>
+                <Option type="invalid" name="UncheckedState"/>
+              </Option>
+            </config>
+          </editWidget>
+        </field>
+      </fieldConfiguration>
+      <aliases>
+        <alias field="fid" index="0" name=""/>
+        <alias field="turb_num" index="1" name="WEA Nummer"/>
+        <alias field="turb_name" index="2" name="WEA Name"/>
+        <alias field="type_name" index="3" name="Anlagentyp"/>
+        <alias field="type_id" index="4" name=""/>
+        <alias field="rotor_radius" index="5" name="Rotorradius"/>
+        <alias field="custom_dist1" index="6" name="Abstand 1"/>
+        <alias field="custom_dist2" index="7" name="Abstand 2"/>
+        <alias field="project_id" index="8" name=""/>
+        <alias field="easem_radius" index="9" name="Baulastradius"/>
+        <alias field="total_height" index="10" name="Gesamthöhe"/>
+        <alias field="crane_angle" index="11" name="Winkel Kran"/>
+        <alias field="wayside" index="12" name="Wegseite Kran"/>
+        <alias field="version" index="13" name="Planungsversion"/>
+        <alias field="wind_angle" index="14" name="Hauptwindrichtung"/>
+        <alias field="is_visible" index="15" name=""/>
+      </aliases>
+      <splitPolicies>
+        <policy field="turb_num" policy="DefaultValue"/>
+        <policy field="turb_name" policy="DefaultValue"/>
+        <policy field="type_name" policy="DefaultValue"/>
+        <policy field="type_id" policy="DefaultValue"/>
+        <policy field="rotor_radius" policy="DefaultValue"/>
+        <policy field="custom_dist1" policy="DefaultValue"/>
+        <policy field="custom_dist2" policy="DefaultValue"/>
+        <policy field="project_id" policy="DefaultValue"/>
+        <policy field="easem_radius" policy="DefaultValue"/>
+        <policy field="total_height" policy="DefaultValue"/>
+        <policy field="crane_angle" policy="DefaultValue"/>
+        <policy field="wayside" policy="DefaultValue"/>
+        <policy field="version" policy="DefaultValue"/>
+        <policy field="wind_angle" policy="DefaultValue"/>
+        <policy field="is_visible" policy="DefaultValue"/>
+      </splitPolicies>
+      <defaults>
+        <default field="fid" expression="" applyOnUpdate="0"/>
+        <default field="turb_num" expression="" applyOnUpdate="0"/>
+        <default field="turb_name" expression="" applyOnUpdate="0"/>
+        <default field="type_name" expression="" applyOnUpdate="0"/>
+        <default field="type_id" expression="" applyOnUpdate="0"/>
+        <default field="rotor_radius" expression="" applyOnUpdate="0"/>
+        <default field="custom_dist1" expression="" applyOnUpdate="0"/>
+        <default field="custom_dist2" expression="" applyOnUpdate="0"/>
+        <default field="project_id" expression="" applyOnUpdate="0"/>
+        <default field="easem_radius" expression="" applyOnUpdate="0"/>
+        <default field="total_height" expression="" applyOnUpdate="0"/>
+        <default field="crane_angle" expression="" applyOnUpdate="0"/>
+        <default field="wayside" expression="'re'" applyOnUpdate="0"/>
+        <default field="version" expression="" applyOnUpdate="0"/>
+        <default field="wind_angle" expression="" applyOnUpdate="0"/>
+        <default field="is_visible" expression="" applyOnUpdate="0"/>
+      </defaults>
+      <constraints>
+        <constraint field="fid" exp_strength="0" constraints="3" unique_strength="1" notnull_strength="1"/>
+        <constraint field="turb_num" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="turb_name" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="type_name" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="type_id" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="rotor_radius" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="custom_dist1" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="custom_dist2" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="project_id" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="easem_radius" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="total_height" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="crane_angle" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="wayside" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="version" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="wind_angle" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+        <constraint field="is_visible" exp_strength="0" constraints="0" unique_strength="0" notnull_strength="0"/>
+      </constraints>
+      <constraintExpressions>
+        <constraint field="fid" exp="" desc=""/>
+        <constraint field="turb_num" exp="" desc=""/>
+        <constraint field="turb_name" exp="" desc=""/>
+        <constraint field="type_name" exp="" desc=""/>
+        <constraint field="type_id" exp="" desc=""/>
+        <constraint field="rotor_radius" exp="" desc=""/>
+        <constraint field="custom_dist1" exp="" desc=""/>
+        <constraint field="custom_dist2" exp="" desc=""/>
+        <constraint field="project_id" exp="" desc=""/>
+        <constraint field="easem_radius" exp="" desc=""/>
+        <constraint field="total_height" exp="" desc=""/>
+        <constraint field="crane_angle" exp="" desc=""/>
+        <constraint field="wayside" exp="" desc=""/>
+        <constraint field="version" exp="" desc=""/>
+        <constraint field="wind_angle" exp="" desc=""/>
+        <constraint field="is_visible" exp="" desc=""/>
+      </constraintExpressions>
+      <expressionfields/>
+      <attributeactions>
+        <defaultAction key="Canvas" value="{00000000-0000-0000-0000-000000000000}"/>
+      </attributeactions>
+      <attributetableconfig sortOrder="0" actionWidgetStyle="dropDown" sortExpression="">
+        <columns>
+          <column type="field" hidden="0" name="fid" width="-1"/>
+          <column type="field" hidden="0" name="turb_num" width="-1"/>
+          <column type="field" hidden="0" name="turb_name" width="-1"/>
+          <column type="field" hidden="0" name="type_name" width="152"/>
+          <column type="field" hidden="0" name="type_id" width="-1"/>
+          <column type="field" hidden="0" name="rotor_radius" width="-1"/>
+          <column type="field" hidden="0" name="custom_dist1" width="160"/>
+          <column type="field" hidden="0" name="custom_dist2" width="139"/>
+          <column type="field" hidden="0" name="project_id" width="-1"/>
+          <column type="field" hidden="0" name="easem_radius" width="199"/>
+          <column type="field" hidden="0" name="total_height" width="-1"/>
+          <column type="field" hidden="0" name="wayside" width="-1"/>
+          <column type="field" hidden="0" name="version" width="-1"/>
+          <column type="field" hidden="0" name="is_visible" width="-1"/>
+          <column type="field" hidden="0" name="crane_angle" width="-1"/>
+          <column type="field" hidden="0" name="wind_angle" width="-1"/>
+          <column type="actions" hidden="1" width="-1"/>
+        </columns>
+      </attributetableconfig>
+      <conditionalstyles>
+        <rowstyles/>
+        <fieldstyles/>
+      </conditionalstyles>
+      <storedexpressions/>
+      <editform tolerant="1"></editform>
+      <editforminit/>
+      <editforminitcodesource>0</editforminitcodesource>
+      <editforminitfilepath></editforminitfilepath>
+      <editforminitcode><![CDATA[# -*- coding: utf-8 -*-
+"""
+QGIS forms can have a Python function that is called when the form is
+opened.
+
+Use this function to add extra logic to your forms.
+
+Enter the name of the function in the "Python Init function"
+field.
+An example follows:
+"""
+from qgis.PyQt.QtWidgets import QWidget
+
+def my_form_open(dialog, layer, feature):
+    geom = feature.geometry()
+    control = dialog.findChild(QWidget, "MyLineEdit")
+]]></editforminitcode>
+      <featformsuppress>0</featformsuppress>
+      <editorlayout>generatedlayout</editorlayout>
+      <editable>
+        <field name="angle_degree" editable="1"/>
+        <field name="crane_angle" editable="1"/>
+        <field name="custom_dist1" editable="1"/>
+        <field name="custom_dist2" editable="1"/>
+        <field name="easem_radius" editable="1"/>
+        <field name="fid" editable="1"/>
+        <field name="is_visible" editable="1"/>
+        <field name="project_id" editable="1"/>
+        <field name="rotor_radius" editable="1"/>
+        <field name="total_height" editable="1"/>
+        <field name="turb_name" editable="1"/>
+        <field name="turb_num" editable="1"/>
+        <field name="type_id" editable="1"/>
+        <field name="type_name" editable="1"/>
+        <field name="version" editable="1"/>
+        <field name="wayside" editable="1"/>
+        <field name="wind_angle" editable="1"/>
+      </editable>
+      <labelOnTop>
+        <field labelOnTop="0" name="angle_degree"/>
+        <field labelOnTop="0" name="crane_angle"/>
+        <field labelOnTop="0" name="custom_dist1"/>
+        <field labelOnTop="0" name="custom_dist2"/>
+        <field labelOnTop="0" name="easem_radius"/>
+        <field labelOnTop="0" name="fid"/>
+        <field labelOnTop="0" name="is_visible"/>
+        <field labelOnTop="0" name="project_id"/>
+        <field labelOnTop="0" name="rotor_radius"/>
+        <field labelOnTop="0" name="total_height"/>
+        <field labelOnTop="0" name="turb_name"/>
+        <field labelOnTop="0" name="turb_num"/>
+        <field labelOnTop="0" name="type_id"/>
+        <field labelOnTop="0" name="type_name"/>
+        <field labelOnTop="0" name="version"/>
+        <field labelOnTop="0" name="wayside"/>
+        <field labelOnTop="0" name="wind_angle"/>
+      </labelOnTop>
+      <reuseLastValue>
+        <field reuseLastValue="0" name="angle_degree"/>
+        <field reuseLastValue="0" name="crane_angle"/>
+        <field reuseLastValue="0" name="custom_dist1"/>
+        <field reuseLastValue="0" name="custom_dist2"/>
+        <field reuseLastValue="0" name="easem_radius"/>
+        <field reuseLastValue="0" name="fid"/>
+        <field reuseLastValue="0" name="is_visible"/>
+        <field reuseLastValue="0" name="project_id"/>
+        <field reuseLastValue="0" name="rotor_radius"/>
+        <field reuseLastValue="0" name="total_height"/>
+        <field reuseLastValue="0" name="turb_name"/>
+        <field reuseLastValue="0" name="turb_num"/>
+        <field reuseLastValue="0" name="type_id"/>
+        <field reuseLastValue="0" name="type_name"/>
+        <field reuseLastValue="0" name="version"/>
+        <field reuseLastValue="0" name="wayside"/>
+        <field reuseLastValue="0" name="wind_angle"/>
+      </reuseLastValue>
+      <dataDefinedFieldProperties/>
+      <widgets/>
+      <previewExpression>"turb_name"</previewExpression>
+      <mapTip enabled="1"></mapTip>
+    </maplayer>
+  </maplayers>
+</qlr>
