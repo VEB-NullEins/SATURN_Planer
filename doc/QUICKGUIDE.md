@@ -23,7 +23,7 @@ Im Wesentlichen werden drei Komponenten automatisch kalkuliert:
 
 → Bei Verbindung den Pfad bis zum Geopackage „SATURN_Planer.gpkg“ durchklicken
 
-![](doc/img/QG_Projekt_laden.png)
+![Projekt laden](doc/img/QG_Projekt_laden.png)
 
 → OK klicken
 
